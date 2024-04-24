@@ -1,0 +1,1 @@
+python /opt/alphafold/run_alphafold.py $@

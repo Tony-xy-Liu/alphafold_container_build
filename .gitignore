@@ -1,0 +1,9 @@
+cache
+*.sif
+
+/scratch
+/secrets
+/data
+/load/tini
+/load/alphafold*
+
