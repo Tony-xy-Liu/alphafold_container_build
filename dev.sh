@@ -37,13 +37,7 @@ case $1 in
         # test build singularity
         singularity build $NAME.sif docker-daemon://$DOCKER_IMAGE:latest
     ;;
-    --run|-r)
-        # test run docker image
-            # --mount type=bind,source="$HERE/scratch/res",target="/ref"\
-            # --mount type=bind,source="$HERE/scratch/res/.ncbi",target="/.ncbi" \
-            # --mount type=bind,source="$HERE/test",target="/ws" \
-            # -e XDG_CACHE_HOME="/ws"\
-        
+    --run|-r)        
         ! [ -d $HERE/scratch ] && mkdir -p $HERE/scratch
         docker run -it --rm \
             --mount type=bind,source="$HERE/scratch",target="/ws" \
@@ -54,15 +48,6 @@ case $1 in
     ;;
     -t)
         singularity run ./$NAME.sif bash
-        # docker run -it --rm \
-        #     --mount type=bind,source="$HERE/scratch",target="/ws"\
-        #     --mount type=bind,source="$HERE/docker/lib",target="/app"\
-        #     --mount type=bind,source="$HERE/docker/load/quipucamayoc/quipucamayoc",target="/opt/conda/envs/quipucamayoc/lib/python3.10/site-packages/quipucamayoc"\
-        #     --workdir="/ws" \
-        #     -u $(id -u):$(id -g) \
-        #     $DOCKER_IMAGE \
-        #     python /ws/test.py
-        #     # /bin/bash 
     ;;
     *)
         echo "bad option"
